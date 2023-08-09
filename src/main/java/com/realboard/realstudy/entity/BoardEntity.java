@@ -4,10 +4,12 @@ package com.realboard.realstudy.entity;
 import com.realboard.realstudy.DTO.BoardDTO;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 //DB의 테이블 역할을 하는 클래스
 @Entity
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class BoardEntity extends BaseEntity{
 
     @Id
@@ -40,4 +42,14 @@ public class BoardEntity extends BaseEntity{
     }
 
 
+    public static BoardEntity toUpdateEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setId((boardDTO.getId()));
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(boardDTO.getBoardHits());
+        return boardEntity;
+    }
 }

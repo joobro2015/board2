@@ -2,6 +2,7 @@ package com.realboard.realstudy.DTO;
 
 import com.realboard.realstudy.entity.BoardEntity;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor //기본생성자
 @AllArgsConstructor // 모든필드를 매개변수로 하는 생성자
+@Component
 public class BoardDTO {
     private Long id;
     private String boardWriter;
@@ -20,6 +22,14 @@ public class BoardDTO {
     private int boardHits;
     private LocalDateTime boardCreatedTime;
     private LocalDateTime boardUpdatedTime;
+
+    public BoardDTO(Long id, String boardWriter, String boardTitle, int boardHits, LocalDateTime boardCreatedTime) {
+        this.id = id;
+        this.boardWriter = boardWriter;
+        this.boardTitle = boardTitle;
+        this.boardHits = boardHits;
+        this.boardCreatedTime = boardCreatedTime;
+    }
 
     public static BoardDTO toBoardDTO(BoardEntity boardEntity){
         BoardDTO boardDTO = new BoardDTO();
