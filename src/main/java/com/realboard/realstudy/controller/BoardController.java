@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -27,7 +28,7 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public  String save(@ModelAttribute BoardDTO boardDTO){
+    public  String save(@ModelAttribute BoardDTO boardDTO) throws IOException {
         //ModelAttribute를 이용해서 클래스를 찾아서 save html에 저장된 name과 boardDTO에 저장된 필드의 이름이 같다면 알아서 setter를 찾아서 꼽아준다.
         System.out.println("boardDTO = " + boardDTO);
         boardService.save(boardDTO);

@@ -11,5 +11,42 @@
     - 수정 처리
 5. 글삭제(/board/delete{id})
 6. 페이징처리(/board/paging)
-   - /board/pagin?page=2
-   
+6. - /board/pagin?page=2
+7. 파일(이미지)첨부하기
+   - 단일 파일 첨부
+   - 다중 파일 첨부
+   - 파일 첨부와 관련하여 추가될 부분들
+     - save.html
+     - BoardDTO
+     - BoardService.save()
+     - BoardEntity
+     - BoardFileEntity, BoardFileRepository
+     - detail.html
+
+----------------board_table(부모) - board_file_table(자식)------------
+
+create table board_table
+(
+id             bigint auto_increment primary key,
+created_time   datetime     null,
+updated_time   datetime     null,
+board_contents varchar(500) null,
+board_hits     int          null,
+board_pass     varchar(255) null,
+board_title    varchar(255) null,
+board_writer   varchar(20)  not null,
+file_attached  int          null
+);
+
+create table board_file_table
+(
+id                 bigint auto_increment primary key,
+created_time       datetime     null,
+updated_time       datetime     null,
+original_file_name varchar(255) null,
+stored_file_name   varchar(255) null,
+board_id           bigint       null,
+constraint FKcfxqly70ddd02xbou0jxgh4o3
+foreign key (board_id) references board_table (id) on delete cascade
+);
+-----------------------------------------------------------------------
